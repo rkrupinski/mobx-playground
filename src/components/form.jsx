@@ -29,7 +29,7 @@ class Form extends Component {
       <form onSubmit={e => this._onSubmit(e)}>
         <input
           type="text"
-          value={this.value}
+          value={this._value}
           onChange={e => this._onChange(e)}
           ref={node => (this._input = node)}
         />
