@@ -6,7 +6,8 @@
   },
   "rules": {
     "no-underscore-dangle": "off",
-    "react/sort-comp": "off"
+    "react/sort-comp": "off",
+    "react/no-unused-prop-types": ["error", { "skipShapeProps": true }]
   },
   "extends": "airbnb"
 }

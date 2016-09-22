@@ -1,5 +1,11 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-/* eslint-disable */
-export default props => <li>{props.data}</li>;
-/* eslint-enable */
+const Todo = ({ data }) => <li>{data.body}</li>;
+
+Todo.propTypes = {
+  data: PropTypes.shape({
+    body: PropTypes.string.isRequired,
+  }),
+};
+
+export default Todo;

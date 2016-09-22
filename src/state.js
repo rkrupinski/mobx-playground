@@ -1,14 +1,15 @@
 import { observable, asMap, action, computed } from 'mobx';
-import { v4 } from 'node-uuid';
+
+import TodoModel from './todoModel';
 
 export default class State {
 
   @observable _todos = asMap({});
 
   @action addTodo(body) {
-    const id = v4();
+    const { id, todo } = TodoModel.create(body);
 
-    this._todos.set(id, body); // Todo
+    this._todos.set(id, todo);
   }
 
   @computed get todos() {

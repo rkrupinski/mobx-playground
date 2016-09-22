@@ -12,8 +12,8 @@ export default class List extends Component {
 
     return (
       <ul>
-        {appState.todos.map((item, index) =>
-            <Todo key={index} data={item} />)}
+        {appState.todos.map(todo =>
+            <Todo key={todo.id} data={todo} />)}
       </ul>
     );
   }
