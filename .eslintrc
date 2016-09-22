@@ -1,7 +1,11 @@
 {
   "root": true,
+  "parser": "babel-eslint",
   "env": {
     "browser": true
+  },
+  "rules": {
+    "no-underscore-dangle": "off"
   },
   "extends": "airbnb"
 }
