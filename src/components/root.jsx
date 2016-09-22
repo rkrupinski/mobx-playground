@@ -9,8 +9,6 @@ import Todos from './todos';
 
 const appState = new State();
 
-appState.addTodo('lorem uipsum'); // FIXME
-
 export default () => (
   <Provider appState={appState}>
     <Router history={hashHistory}>
