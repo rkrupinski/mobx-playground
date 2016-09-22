@@ -13,7 +13,7 @@ export default class List extends Component {
     return (
       <ul>
         {appState.todos.map(todo =>
-            <Todo key={todo.id} data={todo} />)}
+            <Todo key={todo.id} todo={todo} />)}
       </ul>
     );
   }

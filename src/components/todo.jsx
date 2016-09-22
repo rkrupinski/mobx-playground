@@ -1,9 +1,36 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 
-const Todo = ({ data }) => <li>{data.body}</li>;
+import { observer } from 'mobx-react';
+
+@observer
+class Todo extends Component {
+
+  _onChange() {
+    const { todo } = this.props;
+
+    todo.toggle();
+  }
+
+  render() {
+    const { todo } = this.props;
+
+    return (
+      <li>
+        <input
+          type="checkbox"
+          checked={todo.completed}
+          onChange={() => this._onChange()}
+        />
+        {' '}
+        <span>{todo.body}</span>
+      </li>
+    );
+  }
+
+}
 
 Todo.propTypes = {
-  data: PropTypes.shape({
+  todo: PropTypes.shape({
     body: PropTypes.string.isRequired,
   }),
 };

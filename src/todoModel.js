@@ -1,6 +1,6 @@
 import { v4 } from 'node-uuid';
 
-import { observable } from 'mobx';
+import { observable, action } from 'mobx';
 
 export default class TodoModel {
 
@@ -11,6 +11,10 @@ export default class TodoModel {
   constructor(id, body) {
     this.id = id;
     this.body = body;
+  }
+
+  @action('toggle todo') toggle() {
+    this.completed = !this.completed;
   }
 
   static create(body) {
