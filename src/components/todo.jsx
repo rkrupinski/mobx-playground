@@ -27,13 +27,13 @@ class Todo extends Component {
     );
   }
 
-}
+  static propTypes = {
+    todo: PropTypes.shape({
+      body: PropTypes.string.isRequired,
+      completed: PropTypes.bool.isRequired,
+    }),
+  };
 
-Todo.propTypes = {
-  todo: PropTypes.shape({
-    body: PropTypes.string.isRequired,
-    completed: PropTypes.bool.isRequired,
-  }),
-};
+}
 
 export default Todo;
