@@ -6,6 +6,7 @@ import TodoModel from './todoModel';
 export default class State {
 
   @observable _todos;
+  @observable _beingEdited = '';
 
   @action addTodo(body) {
     const todo = new TodoModel(body);
@@ -13,8 +14,24 @@ export default class State {
     this._todos.set(todo.id, todo);
   }
 
+  @action removeTodo(id) {
+    this._todos.delete(id);
+  }
+
+  @action startEditing(id) {
+    this._beingEdited = id;
+  }
+
+  @action doneEditing() {
+    this._beingEdited = '';
+  }
+
   @computed get todos() {
     return this._todos.keys().map(key => this._todos.get(key));
+  }
+
+  @computed get beingEdited() {
+    return this._beingEdited;
   }
 
   toJS() {

@@ -17,6 +17,10 @@ export default class TodoModel {
     this.completed = !this.completed;
   }
 
+  @action('update todo') update(body) {
+    this.body = body;
+  }
+
   toJS() {
     const { id, body, completed } = this;
 

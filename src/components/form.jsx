@@ -11,13 +11,15 @@ class Form extends Component {
   _onSubmit(e) {
     e.preventDefault();
 
-    if (!this._value.length) {
+    const value = this._value.trim();
+
+    if (!value.length) {
       return;
     }
 
     const { appState } = this.props;
 
-    appState.addTodo(this._value);
+    appState.addTodo(value);
 
     this._value = '';
     this._input.focus();
