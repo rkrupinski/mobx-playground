@@ -15,10 +15,7 @@ class Form extends Component {
       return;
     }
 
-    const { appState } = this.props;
-
-    appState.addTodo(this._value);
-
+    this.props.appState.addTodo(this._value);
     this._value = '';
     this._input.focus();
   }

@@ -1,21 +1,20 @@
-import React, { Component } from 'react';
+import React, { PropTypes } from 'react';
 
 import { observer } from 'mobx-react';
 
 import Todo from './todo';
 
-/* eslint-disable */
-@observer(['appState'])
-export default class List extends Component {
-  render() {
-    const { appState } = this.props;
+const List = observer(['appState'], ({ appState }) => (
+  <ul>
+    {appState.todos.map(todo =>
+      <Todo key={todo.id} todo={todo} />)}
+  </ul>
+));
 
-    return (
-      <ul>
-        {appState.todos.map(todo =>
-            <Todo key={todo.id} todo={todo} />)}
-      </ul>
-    );
-  }
-}
-/* eslint-enable */
+List.wrappedComponent.propTypes = {
+  appState: PropTypes.shape({
+    todos: PropTypes.array.isRequired,
+  }),
+};
+
+export default List;

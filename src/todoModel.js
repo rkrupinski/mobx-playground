@@ -4,12 +4,12 @@ import { observable, action } from 'mobx';
 
 export default class TodoModel {
 
-  @observable completed = false;
+  @observable completed;
   @observable body;
-  id;
 
-  constructor(id, body) {
+  constructor(body, id = v4(), completed = false) {
     this.id = id;
+    this.completed = completed;
     this.body = body;
   }
 
@@ -17,13 +17,10 @@ export default class TodoModel {
     this.completed = !this.completed;
   }
 
-  static create(body) {
-    const id = v4();
+  toJS() {
+    const { id, body, completed } = this;
 
-    return {
-      id,
-      todo: new TodoModel(id, body),
-    };
+    return { id, body, completed };
   }
 
 }

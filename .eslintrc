@@ -5,9 +5,10 @@
     "browser": true
   },
   "rules": {
+    "import/prefer-default-export": "off",
     "no-underscore-dangle": "off",
     "react/sort-comp": "off",
-    "react/no-unused-prop-types": ["error", { "skipShapeProps": true }]
+    "react/no-unused-prop-types": "warn" // https://github.com/yannickcr/eslint-plugin-react/issues/847#issuecomment-247737320
   },
   "extends": "airbnb"
 }

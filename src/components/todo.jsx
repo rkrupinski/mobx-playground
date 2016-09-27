@@ -32,6 +32,7 @@ class Todo extends Component {
 Todo.propTypes = {
   todo: PropTypes.shape({
     body: PropTypes.string.isRequired,
+    completed: PropTypes.bool.isRequired,
   }),
 };
 

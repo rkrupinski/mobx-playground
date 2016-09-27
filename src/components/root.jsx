@@ -3,11 +3,12 @@ import React from 'react';
 import { Router, Route, IndexRedirect, hashHistory } from 'react-router';
 import { Provider } from 'mobx-react';
 
+import { restoreState } from '../utils';
 import State from '../state';
 import Layout from './layout';
 import Todos from './todos';
 
-const appState = new State();
+const appState = new State(restoreState());
 
 export default () => (
   <Provider appState={appState}>
