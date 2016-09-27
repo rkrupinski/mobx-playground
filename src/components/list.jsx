@@ -3,6 +3,7 @@ import Radium from 'radium';
 
 import { observer } from 'mobx-react';
 
+import { TODOS_PENDING, TODOS_COMPLETED } from '../constants';
 import Todo from './todo';
 
 const styles = {
@@ -16,16 +17,30 @@ const styles = {
 @Radium
 class List extends Component {
 
+  static getFilterFn(filter) {
+    switch (filter) {
+      case TODOS_PENDING:
+        return ({ completed }) => !completed;
+      case TODOS_COMPLETED:
+        return ({ completed }) => completed;
+      default:
+        return () => true;
+    }
+  }
+
   render() {
     const { appState, filter } = this.props;
 
-    console.log(filter);
+    const filteredList = appState.todos.filter(List.getFilterFn(filter));
 
     return (
-      <ul style={styles.list}>
-        {appState.todos.map(todo =>
-          <Todo key={todo.id} todo={todo} />)}
-      </ul>
+      filteredList.length ?
+        <ul style={styles.list}>
+          {filteredList.map(todo =>
+            <Todo key={todo.id} todo={todo} />)}
+        </ul>
+        :
+        <p>Hooray, no todos!</p>
     );
   }
 
