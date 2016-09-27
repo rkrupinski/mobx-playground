@@ -17,7 +17,9 @@ const styles = {
 class List extends Component {
 
   render() {
-    const { appState } = this.props;
+    const { appState, filter } = this.props;
+
+    console.log(filter);
 
     return (
       <ul style={styles.list}>
@@ -31,6 +33,7 @@ class List extends Component {
     appState: PropTypes.shape({
       todos: PropTypes.array.isRequired,
     }),
+    filter: PropTypes.string.isRequired,
   };
 }
 

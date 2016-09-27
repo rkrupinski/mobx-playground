@@ -10,13 +10,7 @@ const styles = {
     marginBottom: 5,
   },
   todoBody: {
-    ':hover': {
-      cursor: 'pointer',
-      background: 'lightcyan',
-    },
-  },
-  hidden: {
-    display: 'none',
+    cursor: 'pointer',
   },
 };
 
@@ -57,7 +51,7 @@ class Todo extends Component {
 
     setTimeout(() => {
       this._input.focus();
-      this._input.selectionStart = edited.length;
+      this._input.selectionStart = edited.lengt;
     });
   }
 
@@ -72,16 +66,12 @@ class Todo extends Component {
   }
 
   _onEdited() {
-    if (!this._isBeingEdited()) {
-      return;
-    }
-
     const { edited } = this.state;
     const { todo } = this.props;
 
     const value = edited.trim();
 
-    if (value.length) {
+    if (value.length && value !== todo.body) {
       todo.update(value);
     }
 
@@ -120,24 +110,24 @@ class Todo extends Component {
           onChange={() => this._onToggle()}
         />
         {' '}
-        <span
-          onClick={() => this._onStartEditing()}
-          style={[
-            styles.todoBody,
-            this._isBeingEdited() && styles.hidden,
-          ]}
-        >
-          {todo.body}
-        </span>
-        <input
-          type="text"
-          style={[!this._isBeingEdited() && styles.hidden]}
-          onKeyDown={e => this._onKeyDown(e)}
-          onChange={e => this._onEdit(e)}
-          onBlur={() => this._onEdited()}
-          ref={node => (this._input = node)}
-          value={edited}
-        />
+        {
+          !this._isBeingEdited() ?
+            <span
+              onClick={() => this._onStartEditing()}
+              style={[styles.todoBody]}
+            >
+              {todo.body}
+            </span>
+            :
+            <input
+              type="text"
+              onKeyDown={e => this._onKeyDown(e)}
+              onChange={e => this._onEdit(e)}
+              onBlur={() => this._onEdited()}
+              ref={node => (this._input = node)}
+              value={edited}
+            />
+        }
         {' '}
         <button onClick={() => this._onRemove()}>x</button>
       </li>
@@ -151,6 +141,9 @@ class Todo extends Component {
     }),
     appState: PropTypes.shape({
       beingEdited: PropTypes.string.isRequired,
+      startEditing: PropTypes.func.isRequired,
+      doneEditing: PropTypes.func.isRequired,
+      removeTodo: PropTypes.func.isRequired,
     }),
   };
 
