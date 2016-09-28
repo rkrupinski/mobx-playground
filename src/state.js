@@ -8,21 +8,21 @@ export default class State {
   @observable _todos;
   @observable _beingEdited = '';
 
-  @action addTodo(body) {
+  @action('add todo') addTodo(body) {
     const todo = new TodoModel(body);
 
     this._todos.set(todo.id, todo);
   }
 
-  @action removeTodo(id) {
+  @action('remove todo') removeTodo(id) {
     this._todos.delete(id);
   }
 
-  @action startEditing(id) {
+  @action('start editing') startEditing(id) {
     this._beingEdited = id;
   }
 
-  @action doneEditing() {
+  @action('done editing') doneEditing() {
     this._beingEdited = '';
   }
 
