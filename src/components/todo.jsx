@@ -51,7 +51,7 @@ class Todo extends Component {
 
     setTimeout(() => {
       this._input.focus();
-      this._input.selectionStart = edited.lengt;
+      this._input.selectionStart = edited.length;
     });
   }
 
@@ -69,10 +69,10 @@ class Todo extends Component {
     const { edited } = this.state;
     const { todo } = this.props;
 
-    const value = edited.trim();
+    const newTodo = edited.trim();
 
-    if (value.length && value !== todo.body) {
-      todo.update(value);
+    if (newTodo.length && newTodo !== todo.body) {
+      todo.update(newTodo);
     }
 
     this._onDoneEditing();
