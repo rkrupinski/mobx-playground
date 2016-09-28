@@ -13,8 +13,8 @@ export default class TodoModel {
     this.body = body;
   }
 
-  @action('toggle todo') toggle() {
-    this.completed = !this.completed;
+  @action('toggle todo') toggle(completed = !this.completed) {
+    this.completed = completed;
   }
 
   @action('update todo') update(body) {

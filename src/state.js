@@ -34,6 +34,12 @@ export default class State {
     return this._beingEdited;
   }
 
+  toggleAll() {
+    const pending = this.todos.some(({ completed }) => !completed);
+
+    this._todos.forEach(todo => todo.toggle(pending));
+  }
+
   toJS() {
     return this._todos.keys().reduce((acc, curr) => {
       const todo = this._todos.get(curr).toJS();
