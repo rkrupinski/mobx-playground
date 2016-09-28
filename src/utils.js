@@ -14,3 +14,6 @@ export const restoreState = () => {
 
   return result || undefined;
 };
+
+export const capitalize = str =>
+    str.replace(/^[a-z]/, char => char.toUpperCase());
