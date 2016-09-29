@@ -17,3 +17,6 @@ export const restoreState = () => {
 
 export const capitalize = str =>
     str.replace(/^[a-z]/, char => char.toUpperCase());
+
+export const pluralize = (count, noun) =>
+    (count === 1 ? noun : `${noun}s`);

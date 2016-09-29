@@ -3,6 +3,8 @@ import React from 'react';
 import Radium from 'radium';
 
 import ToggleAllBtn from './toggleAllBtn';
+import ClearCompletedBtn from './clearCompletedBtn';
+import ItemsLeft from './itemsLeft';
 
 const styles = {
   toolbar: {
@@ -13,6 +15,10 @@ const styles = {
 const Toolbar = () => (
   <div style={styles.toolbar}>
     <ToggleAllBtn />
+    {' '}
+    <ClearCompletedBtn />
+    {' '}
+    <ItemsLeft />
   </div>
 );
 

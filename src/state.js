@@ -26,8 +26,21 @@ export default class State {
     this._beingEdited = '';
   }
 
+  @action('clear completed') clearCompleted() {
+    this.todos.forEach(({ completed, id }) =>
+        completed && this._todos.delete(id));
+  }
+
   @computed get todos() {
     return this._todos.keys().map(key => this._todos.get(key));
+  }
+
+  @computed get todoCount() {
+    return this.todos.length;
+  }
+
+  @computed get completedCount() {
+    return this.todos.filter(({ completed }) => completed).length;
   }
 
   @computed get beingEdited() {
@@ -41,8 +54,8 @@ export default class State {
   }
 
   toJS() {
-    return this._todos.keys().reduce((acc, curr) => {
-      const todo = this._todos.get(curr).toJS();
+    return this.todos.reduce((acc, curr) => {
+      const todo = curr.toJS();
 
       return { ...acc, [todo.id]: todo };
     }, {});

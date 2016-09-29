@@ -3,12 +3,12 @@ import React, { Component, PropTypes } from 'react';
 import { observer } from 'mobx-react';
 
 @observer(['appState'])
-class ToggleAllBtn extends Component {
+class clearCompletedBtn extends Component {
 
   _handleClick() {
     const { appState } = this.props;
 
-    appState.toggleAll();
+    appState.clearCompleted();
   }
 
   render() {
@@ -17,20 +17,19 @@ class ToggleAllBtn extends Component {
     return (
       <button
         onClick={() => this._handleClick()}
-        disabled={!appState.todoCount}
+        disabled={!appState.completedCount}
       >
-        Toggle all
+        Clear completed
       </button>
     );
   }
 
   static propTypes = {
     appState: PropTypes.shape({
-      toggleAll: PropTypes.func.isRequired,
-      todoCount: PropTypes.number.isRequired,
+      clearCompleted: PropTypes.func.isRequired,
+      completedCount: PropTypes.number.isRequired,
     }),
   };
-
 }
 
-export default ToggleAllBtn;
+export default clearCompletedBtn;
