@@ -18,6 +18,10 @@ const styles = {
 @Radium
 class Todo extends Component {
 
+  state = {
+    edited: this.props.todo.body,
+  };
+
   _onToggle() {
     const { todo } = this.props;
 
@@ -88,14 +92,6 @@ class Todo extends Component {
     const { todo, appState } = this.props;
 
     return todo.id === appState.beingEdited;
-  }
-
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = {
-      edited: props.todo.body,
-    };
   }
 
   render() {

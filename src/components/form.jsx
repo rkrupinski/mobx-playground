@@ -5,13 +5,9 @@ import { observer } from 'mobx-react';
 @observer(['appState'])
 class Form extends Component {
 
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = {
-      value: '',
-    };
-  }
+  state = {
+    value: '',
+  };
 
   _onEdit(e) {
     this.setState({

@@ -8,9 +8,9 @@ export default class TodoModel {
   @observable body;
 
   constructor(body, id = v4(), completed = false) {
+    this.body = body;
     this.id = id;
     this.completed = completed;
-    this.body = body;
   }
 
   @action('toggle todo') toggle(completed = !this.completed) {
